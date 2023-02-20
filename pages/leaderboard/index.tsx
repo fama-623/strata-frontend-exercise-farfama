@@ -48,7 +48,7 @@ const Leaderboard: FC<LeaderboardData> = ({leaderboard}) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await fetch(`/api/leaderboard`);
+  const response = await fetch(`${process.env.URL}/api/leaderboard`);
   const data = await response.json();
   const leaderboard = data.leaderboard;
   // console.log(leaderboard);
