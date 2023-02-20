@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { useEffect, useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
 import Link from "next/link"
 import Image from "next/image"
@@ -7,22 +8,32 @@ import Image from "next/image"
 
 const Leaderboard: FC<LeaderboardData> = ({leaderboard}) => {
 
+  const [liked, setLiked] = useState<any>({});
+  useEffect(() => {
+    const items = { ...localStorage };
+    setLiked(items)
+  }, []);
+
+  console.log(liked);
+
+
 
   return (<>
     <div className="">
       <h1 className="text-4xl font-bold">Leaderboard</h1>
-      {leaderboard.map((item : UserDetails, index: number) => (
-      <Link href={`/profile/${item.username}`} key={item.username}>
-        <div>
+      {leaderboard.map((user : UserDetails, index: number) => (
+      <Link className="flex  items-center justify-center cursor-pointer" href={`/profile/${user.username}`} key={user.username}>
+        <div className="max-w-lg w-96 p-8 mb-4 mt-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <p>{`${index + 1}. ${user.username}`}</p>
           <Image
-            src={item.profileImage}
-            alt={`${item.username} profile image`}
+            src={user.profileImage}
+            alt={`${user.username} profile image`}
             className="rounded-full"
             width={50}
             height={50}
           />
-        <p>{`${index + 1}. ${item.username}`}</p>
-        <p>{item.score}</p>
+        <p>{user.score}</p>
+        <p>{ (liked.hasOwnProperty(`liked_${user.username}`) && liked[`liked_${user.username}`]=="true") ? "Liked" : ""}</p>
         </div>
       </Link>
       ))}
