@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next"
+import Image from "next/image"
 import { FC } from "react"
 
 
@@ -10,6 +11,13 @@ const User = (profileData: ProfileData) => {
 
       <div className="w-full h-80 flex flex-col items-center justify-center space-y-12">
       <h1>{profileData.username}'s Profile</h1>
+      <Image
+        src={`/users/${profileData.username}.png`}
+        alt={`/users/${profileData.username}'s profile image`}
+        className="rounded-full"
+        width={50}
+        height={50}
+      />
         <p>Bio: {profileData.bio}</p>
         <p>Age: {profileData.age}</p>
         <p>Email: {profileData.email}</p>
