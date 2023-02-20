@@ -60,7 +60,7 @@ const User = ({username, age, email, twitter}: ProfileData) => {
 
 export const getServerSideProps: GetServerSideProps = async ({params}: any) => {
   const {username} = params;
-  const info = await fetch(`${process.env.PORT}/api/profile/${username}`)
+  const info = await fetch(`/api/profile/${username}`)
     .then(response => response.json() )
 
   return{
