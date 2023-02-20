@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch("http://localhost:3000/api/leaderboard");
   const data = await response.json();
   const leaderboard = data.leaderboard;
-  console.log(leaderboard);
+  // console.log(leaderboard);
 
   return {
     props: { leaderboard }
