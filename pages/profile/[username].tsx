@@ -1,8 +1,10 @@
 import { GetServerSideProps } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { FC } from "react"
 import {useState, useEffect} from 'react'
 import Heart from "../../components/heart"
+import BackButton from "../../components/BackButton"
 
 
 
@@ -25,7 +27,7 @@ const User = ({username, age, email, twitter}: ProfileData) => {
   };
 
   return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-screen flex-col">
       <div className="max-w-lg w-96 p-8 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <Image
         src={`/users/${username}.png`}
@@ -47,7 +49,10 @@ const User = ({username, age, email, twitter}: ProfileData) => {
           {liked && <Heart/>}
         </div>
       </div>
-    </div>
+      <Link href="/leaderboard" className="mt-8 max-w-lg w-96">
+        <BackButton/>
+      </Link>
+      </div>
     )
 }
 
