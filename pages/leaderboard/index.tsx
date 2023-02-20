@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useEffect, useState } from "react"
-import { GetStaticProps, GetStaticPaths } from "next"
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next"
 import Heart from "../../components/Heart"
 import Link from "next/link"
 import Image from "next/image"
@@ -47,11 +47,10 @@ const Leaderboard: FC<LeaderboardData> = ({leaderboard}) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const response = await fetch(`${process.env.URL}/api/leaderboard`);
   const data = await response.json();
   const leaderboard = data.leaderboard;
-  // console.log(leaderboard);
 
   return {
     props: { leaderboard }
