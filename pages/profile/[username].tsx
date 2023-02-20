@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { FC } from "react"
 import {useState, useEffect} from 'react'
-import Heart from "../../components/heart"
+import Heart from "../../components/Heart"
 import BackButton from "../../components/BackButton"
 
 
