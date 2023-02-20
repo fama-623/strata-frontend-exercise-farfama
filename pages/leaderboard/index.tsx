@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useEffect, useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
-import Heart from "../../components/heart"
+import Heart from "../../components/Heart"
 import Link from "next/link"
 import Image from "next/image"
 
