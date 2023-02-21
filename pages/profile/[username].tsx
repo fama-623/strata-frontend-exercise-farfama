@@ -8,7 +8,6 @@ import BackButton from "../../components/BackButton";
 
 const User = ({ username, age, email, twitter }: ProfileData) => {
   const [liked, setLiked] = useState(false);
-  // Read the liked status from local storage when the component mounts
   useEffect(() => {
     const likedStatus = localStorage.getItem(`liked_${username}`);
     if (likedStatus) {

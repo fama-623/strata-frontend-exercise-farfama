@@ -1,11 +1,24 @@
 import { FC } from "react";
 import { useEffect, useState } from "react";
-import { GetServerSideProps } from "next";
 import Heart from "../../components/Heart";
 import Link from "next/link";
 import Image from "next/image";
 
-const Leaderboard: FC<LeaderboardData> = ({ leaderboard }) => {
+const Leaderboard  = () => {
+
+  const [data, setData] = useState([]);
+
+  const fetchData = async ()  =>  {
+      const response = await fetch(`/api/leaderboard`);
+      const data = await response.json();
+      setData(data.leaderboard);
+      console.log(data);
+    }
+    
+      useEffect(() => {
+        fetchData();
+  }, []);
+
   const [liked, setLiked] = useState<any>({});
   useEffect(() => {
     const items = { ...localStorage };
@@ -19,7 +32,7 @@ const Leaderboard: FC<LeaderboardData> = ({ leaderboard }) => {
       <div>
         <div className="flex  items-center justify-center flex-col">
           <h1 className="text-4xl font-bold m-12">Leaderboard</h1>
-          {leaderboard.map((user: UserDetails, index: number) => (
+          {data.map((user: UserDetails, index: number) => (
             <Link
               href={`/profile/${user.username}`}
               key={user.username}
@@ -55,14 +68,14 @@ const Leaderboard: FC<LeaderboardData> = ({ leaderboard }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await fetch(`${process.env.URL}/api/leaderboard`);
-  const data = await response.json();
-  const leaderboard = data.leaderboard;
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const response = await fetch(`${process.env.URL}/api/leaderboard`);
+//   const data = await response.json();
+//   const leaderboard = data.leaderboard;
 
-  return {
-    props: { leaderboard },
-  };
-};
+//   return {
+//     props: { leaderboard },
+//   };
+// };
 
 export default Leaderboard;
