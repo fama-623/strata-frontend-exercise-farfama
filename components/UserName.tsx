@@ -1,16 +1,14 @@
 type UserNameProps = {
-    username: string
-    className : React.ComponentProps<'div'>['className']
-}
+  username: string;
+  className: React.ComponentProps<"div">["className"];
+};
 
 const UserName = ({ username, className }: UserNameProps) => {
-  
-  
-    return (
-      <>
-        <h1 className={className}>{username}</h1>
-      </>
-    );
-  };
+  return (
+    <>
+      <h1 className={className}>{username}</h1>
+    </>
+  );
+};
 
-  export default UserName;
+export default UserName;

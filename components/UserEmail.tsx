@@ -1,15 +1,13 @@
 type UserEmailProps = {
-    email: string
-}
+  email: string;
+};
 
 const UserEmail = ({ email }: UserEmailProps) => {
-  
-  
-    return (
-      <>
-        <p className="text-slate-600">Email: {email}</p>
-      </>
-    );
-  };
+  return (
+    <>
+      <p className="text-slate-600">Email: {email}</p>
+    </>
+  );
+};
 
-  export default UserEmail;
+export default UserEmail;

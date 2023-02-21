@@ -13,12 +13,12 @@ const Leaderboard: FC = () => {
           <h1 className="text-4xl font-bold m-12">Leaderboard</h1>
           {data.map((user: UserDetails, index: number) => (
             <LeaderboardUser
-                username={user.username}
-                profileImage={user.profileImage}
-                score={user.score}
-                liked={liked}
-                heart={<Heart/>}
-              />
+              username={user.username}
+              profileImage={user.profileImage}
+              score={user.score}
+              liked={liked}
+              heart={<Heart />}
+            />
           ))}
         </div>
       </div>
