@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import { useState, useEffect } from "react";
+import useProfile from "../../hooks/useProfile";
 import Heart from "../../components/Heart";
 import BackButton from "../../components/BackButton";
-import { useRouter } from "next/router";
 import UserBio from "../../components/UserBio";
 import UserBirthday from "../../components/UserBirthday";
 import UserEmail from "../../components/UserEmail";
@@ -13,34 +12,12 @@ import UserTwitter from "../../components/UserTwitter";
 import UserAge from "../../components/UserAge";
 
 const User: FC = () => {
-  const router = useRouter();
-  const { username } = router.query;
-  const [userData, setUserData] = useState<any>([]);
 
-  const [liked, setLiked] = useState(false);
-  useEffect(() => {
-    const likedStatus = localStorage.getItem(`liked_${username}`);
-    if (likedStatus) {
-      setLiked(JSON.parse(likedStatus));
-    }
-  }, [username]);
+  let {
+    userData,
+    liked,
+    handleLikeClick} = useProfile();
 
-  const fetchData = async () => {
-    const response = await fetch(`/api/profile/${username}`);
-    const data = await response.json();
-    setUserData(data);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const handleLikeClick = () => {
-    const newLikedStatus = !liked;
-    localStorage.setItem(`liked_${username}`, JSON.stringify(newLikedStatus));
-    setLiked(newLikedStatus);
-    console.log(newLikedStatus);
-  };
 
   return (
     <div className="flex items-center justify-center h-screen flex-col">
