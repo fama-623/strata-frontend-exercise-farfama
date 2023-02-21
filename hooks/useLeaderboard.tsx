@@ -5,9 +5,16 @@ export default function useLeaderBoard() {
   const [liked, setLiked] = useState<any>({});
 
   const fetchData = async () => {
-    const response = await fetch(`/api/leaderboard`);
-    const data = await response.json();
-    setData(data.leaderboard);
+    try {
+      const response = await fetch(`/api/leaderboard`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setData(data.leaderboard);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   //fetch leaderboard on run

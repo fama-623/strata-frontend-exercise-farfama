@@ -15,9 +15,16 @@ export default function useProfile() {
   }, [username]);
 
   const fetchData = async () => {
-    const response = await fetch(`/api/profile/${username}`);
-    const data = await response.json();
-    setUserData(data);
+    try {
+      const response = await fetch(`/api/profile/${username}`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   useEffect(() => {
