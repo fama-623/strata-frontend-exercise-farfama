@@ -28,7 +28,6 @@ export default function useProfile() {
     const newLikedStatus = !liked;
     localStorage.setItem(`liked_${username}`, JSON.stringify(newLikedStatus));
     setLiked(newLikedStatus);
-    console.log(newLikedStatus);
   };
 
   return {

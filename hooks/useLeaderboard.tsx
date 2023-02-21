@@ -8,7 +8,6 @@ export default function useLeaderBoard() {
     const response = await fetch(`/api/leaderboard`);
     const data = await response.json();
     setData(data.leaderboard);
-    console.log(data);
   };
 
   //fetch leaderboard on run
